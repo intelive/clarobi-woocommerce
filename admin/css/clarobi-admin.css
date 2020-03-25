@@ -1,0 +1,14 @@
+/**
+ * All of the CSS for your admin-specific functionality should be
+ * included in this file.
+ */
+
+.clarobi-settings-input{
+    min-width: 100% !important;
+    background-color: red;
+}
+@media (min-width: 782px) {
+    .clarobi-settings-input{
+        min-width: 70%!important;
+    }
+}
