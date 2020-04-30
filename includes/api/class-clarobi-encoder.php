@@ -58,6 +58,7 @@ class Clarobi_Encoder
         $this->encodedJson = [
             'isEncoded' => $responseIsEncoded,
             'isCompressed' => $responseIsCompressed,
+//            'rawData' => $this->jsonContent,
             'data' => $data,
             'license_key' => $this->configs['CLAROBI_LICENSE_KEY'],
             'entity' => $entityName,

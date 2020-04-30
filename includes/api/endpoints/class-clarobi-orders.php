@@ -14,6 +14,11 @@ class Clarobi_Orders extends Clarobi_Auth
      */
     protected $WC_Rest_Orders_Controller;
 
+    /**
+     * @var WC_REST_Products_Controller
+     */
+    protected $WC_REST_Products_Controller;
+
     protected $rest_base = 'order';
     protected $entity_name = 'order';
 
@@ -27,6 +32,7 @@ class Clarobi_Orders extends Clarobi_Auth
         add_action('rest_api_init', array($this, 'clarobi_order_route'));
 
         $this->WC_Rest_Orders_Controller = new WC_REST_Orders_Controller();
+        $this->WC_REST_Products_Controller = new WC_REST_Products_Controller();
     }
 
     /**
@@ -95,7 +101,7 @@ class Clarobi_Orders extends Clarobi_Auth
                     $preparedData['store_id'] = get_main_site_id();
                     $preparedData['entity_name'] = 'sales_' . $this->entity_name;
 
-                    $preparedData['line_items'] = $this->formant_items_details($preparedData['line_items']);
+                    $preparedData['line_items'] = $this->formant_items_details($preparedData['line_items'], $request);
 
                     $preparedData = $this->set_coupons_codes($preparedData);
                     $all_formatted_data = Clarobi_Mapper::ignore_entity_keys($this->entity_name, $preparedData);
@@ -126,15 +132,20 @@ class Clarobi_Orders extends Clarobi_Auth
      * @param $line_items
      * @return array
      */
-    private function formant_items_details($line_items)
+    private function formant_items_details($line_items, $request)
     {
         $new_lines = [];
         foreach ($line_items as $item) {
+            // Get product for categories and options
+            $product = new WC_Product($item['product_id']);
+            $product = $this->WC_REST_Products_Controller
+                ->prepare_object_for_response($product, $request);
+            $product = $this->WC_REST_Products_Controller->prepare_response_for_collection($product);
+
             $item = Clarobi_Mapper::set_parent_details($item);
 
-//            $product = new WC_Product($item['product_id']);
-//            $item['categories'] = $this->get_categories_tree($product->get_category_ids());
-            $item['categories'] = [];
+            $item['categories'] = $this->mapProductCategories($product['categories']);
+            $item['options'] = $this->mapProductOptions($product['attributes'], $item['product_id']);
 
             $new_lines[] = $item;
         }
@@ -143,32 +154,61 @@ class Clarobi_Orders extends Clarobi_Auth
     }
 
     /**
-     * Return an array containing a mapping for product categories.
-     * @todo delete
-     * @param array $categories Array with product categories ids.
+     * "categories":{
+     *      "id": "1",
+     *      "name": "Clothing"
+     * }
+     * @param $categories
      * @return array
      */
-    private function get_categories_tree($categories)
+    private function mapProductCategories($categories)
     {
-        $categories_tree = [];
-        if (is_array($categories)) {
+        $mappedCategories = [];
+        if (!empty($categories)) {
             foreach ($categories as $category) {
-                // get category name
-                // add to tree
-                $categories_tree[] = [
-                    'id' => $category,
-                    'name' => ''
+                $mappedCategories[]=[
+                    'id' => $category['id'],
+                    'name'=>$category['name']
                 ];
             }
         }
-        // todo how to get category name????
-//        var_dump(get_category(20,ARRAY_A, 'no'));
-//        var_dump(get_the_category(185));
-
-        return $categories_tree;
+        return $mappedCategories;
     }
 
-    private function set_coupons_codes($preparedData){
+    /**
+     * "options":{
+     *      "attribute_id": "1",
+     *      "item_id": "381", #order item id,
+     *      "label": "Manufacturer",
+     *      "value": "Made In China"
+     * }
+     * @param $attributes
+     * @param $product_id
+     * @return array
+     */
+    private function mapProductOptions($attributes, $product_id)
+    {
+        $options = [];
+        if (!empty($attributes)) {
+            foreach ($attributes as $attribute) {
+                if (!empty($attribute['options'])) {
+                    foreach ($attribute['options'] as $option) {
+                        $options[] = [
+                            'attribute_id' => $attribute['id'],
+                            'label' => $attribute['name'],
+                            'value' => $option,
+                            'item_id' => $product_id
+                        ];
+                    }
+                }
+            }
+        }
+
+        return $options;
+    }
+
+    private function set_coupons_codes($preparedData)
+    {
         // no need for all coupons info
         $coupons_codes = [];
         if (isset($preparedData['coupon_lines'])) {
