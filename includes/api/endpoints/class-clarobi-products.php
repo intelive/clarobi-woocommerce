@@ -1,11 +1,28 @@
 <?php
 
+/**
+ * Products endpoint.
+ *
+ * @link       https://clarobi.com
+ * @since      1.0.0
+ *
+ * @package    Clarobi
+ * @subpackage Clarobi/includes/api/endpoints
+ */
+
 if (!defined('WPINC')) {
     die;
 }
 
 /**
- * Class Clarobi_Products
+ * Products endpoint.
+ *
+ * This class is responsible for creating and implementing /clarobi/product endpoint.
+ *
+ * @since      1.0.0
+ * @package    Clarobi
+ * @subpackage Clarobi/includes/api/endpoints
+ * @author     Interlive Metrics <gitangeorgiana97@gmail.com>
  */
 class Clarobi_Products extends Clarobi_Auth
 {
@@ -83,16 +100,6 @@ class Clarobi_Products extends Clarobi_Auth
                 foreach ($results as $product) {
                     $data = $this->WC_REST_Products_Controller->prepare_object_for_response($product, $request);
                     $preparedData = $this->WC_REST_Products_Controller->prepare_response_for_collection($data);
-
-                    /**
-                     * Get all available variations for this product based on all attributes combinations.
-                     *
-                     * @todo can be removed since we need the actual attributes
-                     *      that come in making all the available variations
-                     */
-//                    $preparedData['variations_details'] = $this->get_product_variations_details(
-//                        $data->get_data()['variations']
-//                    );
 
                     $preparedData['entity_name'] = $this->entity_name;
 

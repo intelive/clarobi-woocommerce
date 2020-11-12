@@ -1,5 +1,27 @@
 <?php
 
+/**
+ * Used for logging errors.
+ *
+ * @link       https://clarobi.com
+ * @since      1.0.0
+ *
+ * @package    Clarobi
+ * @subpackage Clarobi/includes
+ */
+
+if (!defined('WPINC')) {
+    die;
+}
+
+/**
+ * Used for logging errors..
+ *
+ * @since      1.0.0
+ * @package    Clarobi
+ * @subpackage Clarobi/includes
+ * @author     Interlive Metrics <gitangeorgiana97@gmail.com>
+ */
 class Clarobi_Logger
 {
     /**
@@ -10,7 +32,7 @@ class Clarobi_Logger
      */
     public static function errorLog($message, $path)
     {
-        $completeMessage = $message ." at ".$path . "( " . date('Y-m-d H:i:s') . " )\n";
+        $completeMessage = $message . " at " . $path . "( " . date('Y-m-d H:i:s') . " )\n";
         error_log(
             $completeMessage,
             3,

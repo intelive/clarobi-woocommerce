@@ -10,7 +10,6 @@
  * @subpackage Clarobi/includes
  */
 
-// If this file is called directly, abort.
 if (!defined('WPINC')) {
     die;
 }
@@ -18,7 +17,7 @@ if (!defined('WPINC')) {
 /**
  * Fired during plugin deactivation.
  *
- * This class defines all code necessary to run during the plugin's deactivation.
+ * This class defines all sql code necessary to run during the plugin deactivation.
  *
  * @since      1.0.0
  * @package    Clarobi

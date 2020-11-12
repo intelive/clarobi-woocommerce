@@ -1,11 +1,28 @@
 <?php
 
+/**
+ * Invoices endpoint.
+ *
+ * @link       https://clarobi.com
+ * @since      1.0.0
+ *
+ * @package    Clarobi
+ * @subpackage Clarobi/includes/api/endpoints
+ */
+
 if (!defined('WPINC')) {
     die;
 }
 
 /**
- * Class Clarobi_Invoices
+ * Invoices endpoint.
+ *
+ * This class is responsible for creating and implementing /clarobi/invoice endpoint.
+ *
+ * @since      1.0.0
+ * @package    Clarobi
+ * @subpackage Clarobi/includes/api/endpoints
+ * @author     Interlive Metrics <gitangeorgiana97@gmail.com>
  */
 class Clarobi_Invoices extends Clarobi_Auth
 {

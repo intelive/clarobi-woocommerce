@@ -9,21 +9,19 @@
  * @package           Clarobi
  *
  * @wordpress-plugin
- * Plugin Name:       clarobi
- * Plugin URI:        https://clarobi.com/documentation/installation/woocommerce
+ * Plugin Name:       Clarobi
+ * Plugin URI:
  * Description:       ClaroBi API helper for reports, statistics and analytics for WooCommerce stores.
  * Version:           1.0.0
- * Author:            Interlive Metrics
+ * Author:            Clarobi
  * Author URI:        https://clarobi.com
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       clarobi
- * Domain Path:       /languages
  * WC requires at least: 3.9.0
- * WC tested up to: 4.0.1.
+ * WC tested up to: 4.5.2.
  */
 
-// If this file is called directly, abort.
 if (!defined('WPINC')) {
     die;
 }
@@ -31,8 +29,8 @@ if (!defined('WPINC')) {
 /**
  * Currently plugin version.
  */
-define('_CLAROBI_VERSION_', '1.0.0');
-define('_CLAROBI_DB_VERSION_', '1.0.0');
+define('CLAROBI_VERSION', '1.0.0');
+define('CLAROBI_DB_VERSION', '1.0.0');
 
 /**
  * Tables names.
@@ -126,15 +124,17 @@ function clarobi_remove_cart_item($cart_item_key, $cart)
     update_clarobi_products_counters_table($product_id, $product_qty, 'add_to_cart', '-');
 }
 
-/**
- * Begins execution of the plugin.
- *
- * Since everything within the plugin is registered via hooks,
- * then kicking off the plugin from this point in the file does
- * not affect the page life cycle.
- *
- * @since    1.0.0
- */
+add_action('rest_api_init', function (){
+    register_rest_route('r', '/i', array(
+        'methods' => WP_REST_Server::READABLE,
+        'callback' => function(){
+            die('123456789');
+        },
+    ));
+});
+
+
+// Begins execution of the plugin.
 function Clarobi()
 {
     return Clarobi::instance();

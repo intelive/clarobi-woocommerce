@@ -1,11 +1,28 @@
 <?php
 
+/**
+ * Credit memos endpoint.
+ *
+ * @link       https://clarobi.com
+ * @since      1.0.0
+ *
+ * @package    Clarobi
+ * @subpackage Clarobi/includes/api/endpoints
+ */
+
 if (!defined('WPINC')) {
     die;
 }
 
 /**
- * Class Clarobi_Credit_Memos
+ * Credit memos endpoint.
+ *
+ * This class is responsible for creating and implementing /clarobi/creditmemo endpoint.
+ *
+ * @since      1.0.0
+ * @package    Clarobi
+ * @subpackage Clarobi/includes/api/endpoints
+ * @author     Interlive Metrics <gitangeorgiana97@gmail.com>
  */
 class Clarobi_Credit_Memos extends Clarobi_Auth
 {
@@ -91,10 +108,6 @@ class Clarobi_Credit_Memos extends Clarobi_Auth
 
                     $preparedData['entity_name'] = 'sales_creditnote';
 
-                    /**
-                     * @todo try another way
-                     *      is it really necessary to have the items?
-                     */
                     // Get associated order
                     $order = new WC_Order($preparedData['order_id']);
                     if ($order) {

@@ -1,11 +1,28 @@
 <?php
 
+/**
+ * Data counters endpoint.
+ *
+ * @link       https://clarobi.com
+ * @since      1.0.0
+ *
+ * @package    Clarobi
+ * @subpackage Clarobi/includes/api/endpoints
+ */
+
 if (!defined('WPINC')) {
     die;
 }
 
 /**
- * Class Clarobi_Data_Counters
+ * Data counters endpoint.
+ *
+ * This class is responsible for creating and implementing /clarobi/dataCounters endpoint.
+ *
+ * @since      1.0.0
+ * @package    Clarobi
+ * @subpackage Clarobi/includes/api/endpoints
+ * @author     Interlive Metrics <gitangeorgiana97@gmail.com>
  */
 class Clarobi_Data_Counters extends Clarobi_Auth
 {
@@ -45,14 +62,7 @@ class Clarobi_Data_Counters extends Clarobi_Auth
             /**
              * If there are more arguments that the default ones for each entity,
              * they will be ignored.
-             *
-             * Other solution is to pass an array to each function:
-             * $customers = get_users(['role' => 'customer', 'limit' => 1, 'orderby' => 'ID', 'order' => 'DESC']);
-             * $orders = wc_get_orders(['post_type' => 'shop_order', 'limit' => 1, 'orderby' => 'ID', 'order' => 'DESC']);
-             * $invoices = wc_get_orders(['post_type' => 'shop_order', 'post_status' => 'wc-completed', 'limit' => 1, 'orderby' => 'ID', 'order' => 'DESC']);
-             * $creditmemos = wc_get_orders(['post_type' => 'shop_order_refund', 'limit' => 1, 'orderby' => 'ID', 'order' => 'DESC']);
              */
-
             $data = [
                 'product' => $this->get_product_id(),
                 'customer' => $this->get_customer_id(),

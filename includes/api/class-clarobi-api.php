@@ -1,11 +1,28 @@
 <?php
 
+/**
+ * Loads api files.
+ *
+ * @link       https://clarobi.com
+ * @since      1.0.0
+ *
+ * @package    Clarobi
+ * @subpackage Clarobi/includes/api
+ */
+
 if (!defined('WPINC')) {
     die;
 }
 
 /**
- * Class Clarobi_API loads Clarobi API endpoints(code).
+ * Loads api files.
+ *
+ * This class is responsible for loading endpoints files.
+ *
+ * @since      1.0.0
+ * @package    Clarobi
+ * @subpackage Clarobi/includes/api
+ * @author     Interlive Metrics <gitangeorgiana97@gmail.com>
  */
 class Clarobi_API
 {

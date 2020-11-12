@@ -10,7 +10,6 @@
  * @subpackage Clarobi/includes
  */
 
-// If this file is called directly, abort.
 if (!defined('WPINC')) {
     die;
 }
@@ -18,7 +17,7 @@ if (!defined('WPINC')) {
 /**
  * Fired during plugin activation.
  *
- * This class defines all code necessary to run during the plugin's activation.
+ * This class defines all sql code necessary to run during the plugin's activation.
  *
  * @since      1.0.0
  * @package    Clarobi
@@ -51,7 +50,7 @@ class Clarobi_Sql_Create
         require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
         dbDelta($sql);
 
-        add_option(OPT_CLAROBI_P_C_DB_VERSION, _CLAROBI_DB_VERSION_);
+        add_option(OPT_CLAROBI_P_C_DB_VERSION, CLAROBI_DB_VERSION);
     }
 
     /**
@@ -77,6 +76,6 @@ class Clarobi_Sql_Create
         require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
         dbDelta($sql);
 
-        add_option(OPT_CLAROBI_CONFIG_DB_VERSION, _CLAROBI_DB_VERSION_);
+        add_option(OPT_CLAROBI_CONFIG_DB_VERSION, CLAROBI_DB_VERSION);
     }
 }

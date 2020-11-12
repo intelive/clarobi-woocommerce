@@ -13,7 +13,6 @@
  * @subpackage Clarobi/includes
  */
 
-// If this file is called directly, abort.
 if (!defined('WPINC')) {
     die;
 }
@@ -52,9 +51,7 @@ class Clarobi
     protected static $_instance = null;
 
     /**
-     * Main Clarobi Instance.
-     *
-     * Ensures only one instance of the Clarobi is loaded or can be loaded.
+     * Main Clarobi Instance. Ensures only one instance of the Clarobi is loaded or can be loaded.
      *
      * @return Clarobi|null - Main instance.
      */
@@ -73,8 +70,6 @@ class Clarobi
      * Set the plugin name and the plugin version that can be used throughout the plugin.
      * Load the dependencies, define the locale, and set the hooks for the admin area and
      * the public-facing side of the site.
-     *
-     * @since    1.0.0
      */
     public function __construct()
     {
@@ -89,7 +84,6 @@ class Clarobi
         $this->load_dependencies();
         $this->define_admin_hooks();
 
-        // @todo: move first if throws errors on activation
         add_action('plugins_loaded', array($this, 'init'));
     }
 
@@ -100,9 +94,6 @@ class Clarobi
      * - Clarobi_Admin. Defines all hooks for the admin area.
      * - Clarobi_Sql_Create. Defines all the tables.
      * - Clarobi_Logger. Logs all the errors in this plugin.
-     *
-     * @since    1.0.0
-     * @access   private
      */
     private function load_dependencies()
     {
@@ -123,11 +114,7 @@ class Clarobi
     }
 
     /**
-     * Register all of the hooks related to the admin area functionality
-     * of the plugin.
-     *
-     * @since    1.0.0
-     * @access   private
+     * Register all of the hooks related to the admin area functionality of the plugin.
      */
     private function define_admin_hooks()
     {
@@ -173,7 +160,7 @@ class Clarobi
     public function activate_notice()
     {
         if (get_option('clarobi_show_activation_notice', false)) {
-            echo '<div class="notice notice-success"><p>'.sprintf(__('The Clarobi is active! Go back to %s to complete the connection.', 'clarobi'), '<a href="https://clarobi.com/" target="_blank">ClaroBi</a>').'</p></div>';
+            echo '<div class="notice notice-success"><p>'.sprintf(__('The ClaroBI is active! Go back to %s to complete the connection.', 'clarobi'), '<a href="https://clarobi.com/" target="_blank">ClaroBI</a>').'</p></div>';
 
             // Disable notice option
             update_option('clarobi_show_activation_notice', false);
@@ -183,9 +170,6 @@ class Clarobi
     /**
      * The name of the plugin used to uniquely identify it within the context of
      * WordPress and to define internationalization functionality.
-     *
-     * @return    string    The name of the plugin.
-     * @since     1.0.0
      */
     public function get_plugin_name()
     {
@@ -194,9 +178,6 @@ class Clarobi
 
     /**
      * Retrieve the version number of the plugin.
-     *
-     * @return    string    The version number of the plugin.
-     * @since     1.0.0
      */
     public function get_version()
     {

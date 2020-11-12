@@ -1,11 +1,28 @@
 <?php
 
+/**
+ * Contains different helping functions.
+ *
+ * @link       https://clarobi.com
+ * @since      1.0.0
+ *
+ * @package    Clarobi
+ * @subpackage Clarobi/includes/api
+ */
+
 if (!defined('WPINC')) {
     die;
 }
 
 /**
- * Class Clarobi_Utils
+ * Contains different helping functions.
+ *
+ * This class defines util functions used in this plugin.
+ *
+ * @since      1.0.0
+ * @package    Clarobi
+ * @subpackage Clarobi/includes/api
+ * @author     Interlive Metrics <gitangeorgiana97@gmail.com>
  */
 class Clarobi_Utils
 {
@@ -61,11 +78,6 @@ class Clarobi_Utils
     public static function prepare_query_args($entity = '')
     {
         $prepared_args = [];
-        /**
-         * No need to use offset if the filter 'from_id' is applied.
-         * @todo delete
-         * $prepared_args['offset'] = $from_id;
-         */
         $prepared_args['orderby'] = 'ID';
         $prepared_args['order'] = 'ASC';
 

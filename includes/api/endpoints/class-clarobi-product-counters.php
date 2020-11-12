@@ -1,11 +1,28 @@
 <?php
 
+/**
+ * Product counters endpoint.
+ *
+ * @link       https://clarobi.com
+ * @since      1.0.0
+ *
+ * @package    Clarobi
+ * @subpackage Clarobi/includes/api/endpoints
+ */
+
 if (!defined('WPINC')) {
     die;
 }
 
 /**
- * Class Clarobi_Product_Counters
+ * Product counters endpoint.
+ *
+ * This class is responsible for creating and implementing /clarobi/productCounters endpoint.
+ *
+ * @since      1.0.0
+ * @package    Clarobi
+ * @subpackage Clarobi/includes/api/endpoints
+ * @author     Interlive Metrics <gitangeorgiana97@gmail.com>
  */
 class Clarobi_Product_Counters extends Clarobi_Auth
 {

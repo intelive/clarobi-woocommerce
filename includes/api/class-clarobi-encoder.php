@@ -1,11 +1,28 @@
 <?php
 
+/**
+ * Encodes JSON data.
+ *
+ * @link       https://clarobi.com
+ * @since      1.0.0
+ *
+ * @package    Clarobi
+ * @subpackage Clarobi/includes/api
+ */
+
 if (!defined('WPINC')) {
     die;
 }
 
 /**
- * Class Clarobi_Encoder
+ * Encodes JSON data.
+ *
+ * This class is responsible for encoding JSON data for security purpose.
+ *
+ * @since      1.0.0
+ * @package    Clarobi
+ * @subpackage Clarobi/includes/api
+ * @author     Interlive Metrics <gitangeorgiana97@gmail.com>
  */
 class Clarobi_Encoder
 {
@@ -58,7 +75,6 @@ class Clarobi_Encoder
         $this->encodedJson = [
             'isEncoded' => $responseIsEncoded,
             'isCompressed' => $responseIsCompressed,
-//            'rawData' => $this->jsonContent,
             'data' => $data,
             'license_key' => $this->configs['CLAROBI_LICENSE_KEY'],
             'entity' => $entityName,

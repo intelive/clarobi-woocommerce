@@ -1,11 +1,28 @@
 <?php
 
+/**
+ * Orders endpoint.
+ *
+ * @link       https://clarobi.com
+ * @since      1.0.0
+ *
+ * @package    Clarobi
+ * @subpackage Clarobi/includes/api/endpoints
+ */
+
 if (!defined('WPINC')) {
     die;
 }
 
 /**
- * Class Clarobi_Orders
+ * Orders endpoint.
+ *
+ * This class is responsible for creating and implementing /clarobi/order endpoint.
+ *
+ * @since      1.0.0
+ * @package    Clarobi
+ * @subpackage Clarobi/includes/api/endpoints
+ * @author     Interlive Metrics <gitangeorgiana97@gmail.com>
  */
 class Clarobi_Orders extends Clarobi_Auth
 {
@@ -62,11 +79,6 @@ class Clarobi_Orders extends Clarobi_Auth
 
     /**
      * Callback for the orders API endpoint.
-     *
-     * $order_statuses = [
-     *      "any", "trash", "pending", "processing", "on-hold",
-     *      "completed", "cancelled", "refunded", "failed"
-     * ];
      *
      * @param WP_REST_Request $request
      * @return mixed|WP_REST_Response
@@ -154,10 +166,8 @@ class Clarobi_Orders extends Clarobi_Auth
     }
 
     /**
-     * "categories":{
-     *      "id": "1",
-     *      "name": "Clothing"
-     * }
+     * Map product categories.
+     *
      * @param $categories
      * @return array
      */
@@ -166,9 +176,9 @@ class Clarobi_Orders extends Clarobi_Auth
         $mappedCategories = [];
         if (!empty($categories)) {
             foreach ($categories as $category) {
-                $mappedCategories[]=[
+                $mappedCategories[] = [
                     'id' => $category['id'],
-                    'name'=>$category['name']
+                    'name' => $category['name']
                 ];
             }
         }
@@ -176,12 +186,8 @@ class Clarobi_Orders extends Clarobi_Auth
     }
 
     /**
-     * "options":{
-     *      "attribute_id": "1",
-     *      "item_id": "381", #order item id,
-     *      "label": "Manufacturer",
-     *      "value": "Made In China"
-     * }
+     * Map product options.
+     *
      * @param $attributes
      * @param $product_id
      * @return array
@@ -207,6 +213,12 @@ class Clarobi_Orders extends Clarobi_Auth
         return $options;
     }
 
+    /**
+     * Get coupons codes.
+     *
+     * @param $preparedData
+     * @return mixed
+     */
     private function set_coupons_codes($preparedData)
     {
         // no need for all coupons info

@@ -1,21 +1,32 @@
 <?php
 
+/**
+ * Define APIs permission function.
+ *
+ * @link       https://clarobi.com
+ * @since      1.0.0
+ *
+ * @package    Clarobi
+ * @subpackage Clarobi/includes/api/auth
+ */
+
 if (!defined('WPINC')) {
     die;
 }
 
 /**
- * Class Clarobi_Auth.
+ * Define APIs permission function.
  *
  * This class is responsible for token and query param validation.
+ *
+ * @since      1.0.0
+ * @package    Clarobi
+ * @subpackage Clarobi/includes/api
+ * @author     Interlive Metrics <gitangeorgiana97@gmail.com>
  */
 class Clarobi_Auth extends WC_REST_Controller
 {
-    /**
-     * Plugin namespace.
-     *
-     * @var string
-     */
+    /** @var string Plugin namespace. */
     public $namespace = 'clarobi';
 
     protected $claro_config;

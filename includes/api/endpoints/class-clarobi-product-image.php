@@ -1,11 +1,28 @@
 <?php
 
+/**
+ * Product image endpoint.
+ *
+ * @link       https://clarobi.com
+ * @since      1.0.0
+ *
+ * @package    Clarobi
+ * @subpackage Clarobi/includes/api/endpoints
+ */
+
 if (!defined('WPINC')) {
     die;
 }
 
 /**
- * Class Clarobi_Product_Image
+ * Product image endpoint.
+ *
+ * This class is responsible for creating and implementing /clarobi/product/get-image endpoint.
+ *
+ * @since      1.0.0
+ * @package    Clarobi
+ * @subpackage Clarobi/includes/api/endpoints
+ * @author     Interlive Metrics <gitangeorgiana97@gmail.com>
  */
 class Clarobi_Product_Image extends Clarobi_Auth
 {
@@ -37,6 +54,7 @@ class Clarobi_Product_Image extends Clarobi_Auth
             $this->namespace, '/' . $this->rest_base . '/id/(?P<id>\\d+)' . '/w/(?P<w>\\d+)', array(
             'methods' => WP_REST_Server::READABLE,
             'callback' => array($this, 'image_api_callback'),
+            'permission_callback' => '__return_true',
         ));
     }
 

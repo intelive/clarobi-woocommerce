@@ -51,16 +51,13 @@ class Clarobi_Admin
 
     /**
      * Add options page.
-     *
-     * @todo : go to 'http://wordpress.localhost.com/wp-admin/options-general.php?page=clarobi'
-     *      if Clarobi section is not visible under Settings
      */
     public function add_plugin_page()
     {
         // This page will be under "Settings"
         add_options_page(
             'Settings Admin',
-            'Clarobi',
+            'ClaroBI',
             'manage_options',
             'clarobi',
             array($this, 'create_admin_page')
@@ -203,8 +200,6 @@ class Clarobi_Admin
 
     /**
      * Register the stylesheets for the admin area.
-     *
-     * @since    1.0.0
      */
     public function enqueue_styles()
     {

@@ -1,11 +1,28 @@
 <?php
 
+/**
+ * Abandoned carts endpoint.
+ *
+ * @link       https://clarobi.com
+ * @since      1.0.0
+ *
+ * @package    Clarobi
+ * @subpackage Clarobi/includes/api/endpoints
+ */
+
 if (!defined('WPINC')) {
     die;
 }
 
 /**
- * Class Clarobi_Abandoned_Carts
+ * Abandoned carts endpoint.
+ *
+ * This class is responsible for creating and implementing /clarobi/abandonedcart endpoint.
+ *
+ * @since      1.0.0
+ * @package    Clarobi
+ * @subpackage Clarobi/includes/api/endpoints
+ * @author     Interlive Metrics <gitangeorgiana97@gmail.com>
  */
 class Clarobi_Abandoned_Carts extends Clarobi_Auth
 {

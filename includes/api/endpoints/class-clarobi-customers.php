@@ -1,11 +1,28 @@
 <?php
 
+/**
+ * Customers endpoint.
+ *
+ * @link       https://clarobi.com
+ * @since      1.0.0
+ *
+ * @package    Clarobi
+ * @subpackage Clarobi/includes/api/endpoints
+ */
+
 if (!defined('WPINC')) {
     die;
 }
 
 /**
- * Class Clarobi_Customers
+ * Customers endpoint.
+ *
+ * This class is responsible for creating and implementing /clarobi/customer endpoint.
+ *
+ * @since      1.0.0
+ * @package    Clarobi
+ * @subpackage Clarobi/includes/api/endpoints
+ * @author     Interlive Metrics <gitangeorgiana97@gmail.com>
  */
 class Clarobi_Customers extends Clarobi_Auth
 {
@@ -84,15 +101,6 @@ class Clarobi_Customers extends Clarobi_Auth
             if (!empty($results)) {
                 /** @var WP_User $customer */
                 foreach ($results as $customer) {
-                    /**
-                     * Other way to map and set store id.
-                     * @todo delete
-                     */
-//                    $data = $this->WC_REST_Customers_Controller->prepare_item_for_response($customer,$request);
-//                    $preparedData = $this->WC_REST_Customers_Controller->prepare_response_for_collection($data);
-//                    $preparedData['store_id'] =get_main_site_id();
-//                    $customers[] = Clarobi_Mapper::ignore_entity_keys($this->entity_name, $preparedData);
-
                     // This way no mapping will be needed in unity-admin
                     $data = $this->prepare_users_for_response($customer, $request);
                     $preparedData = $this->prepare_response_for_collection($data);

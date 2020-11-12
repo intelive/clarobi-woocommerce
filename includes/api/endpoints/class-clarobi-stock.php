@@ -1,11 +1,28 @@
 <?php
 
+/**
+ * Stocks endpoint.
+ *
+ * @link       https://clarobi.com
+ * @since      1.0.0
+ *
+ * @package    Clarobi
+ * @subpackage Clarobi/includes/api/endpoints
+ */
+
 if (!defined('WPINC')) {
     die;
 }
 
 /**
- * Class Clarobi_Stock
+ * Stocks endpoint.
+ *
+ * This class is responsible for creating and implementing /clarobi/stock endpoint.
+ *
+ * @since      1.0.0
+ * @package    Clarobi
+ * @subpackage Clarobi/includes/api/endpoints
+ * @author     Interlive Metrics <gitangeorgiana97@gmail.com>
  */
 class Clarobi_Stock extends Clarobi_Auth
 {
@@ -114,8 +131,6 @@ class Clarobi_Stock extends Clarobi_Auth
      *
      * @param WC_Product $product Product instance.
      * @param string $context Request context.
-     *                            Options: 'view' and 'edit'.
-     *
      * @return array
      */
     protected function get_product_data($product, $context = 'view')
